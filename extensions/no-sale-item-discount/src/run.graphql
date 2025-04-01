@@ -1,4 +1,49 @@
 query RunInput {
+  cart {
+    lines {
+      id
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          product {
+            id
+            hasAnyTag(tags: ["sale"])
+          }
+        }
+      }
+      cost {
+        amountPerQuantity {
+          amount
+          currencyCode
+        }
+        compareAtAmountPerQuantity {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+    buyerIdentity {
+      customer {
+        id
+        email
+        metafield(namespace: "$app:no-sale-item-discount", key: "used-discount") {
+          value
+        }
+      }
+    }
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+  }
   discountNode {
     metafield(namespace: "$app:no-sale-item-discount", key: "function-configuration") {
       value

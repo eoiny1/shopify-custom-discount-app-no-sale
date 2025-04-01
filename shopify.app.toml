@@ -3,21 +3,26 @@
 client_id = "84b55a4dd0483e13a6a34ec1cbe41970"
 name = "custom-discount-app-no-sale"
 handle = "custom-discount-app-no-sale"
-application_url = "https://example.com/"
+application_url = "https://everybody-explains-comes-headphones.trycloudflare.com"
 embedded = true
 
 [build]
 include_config_on_deploy = true
+automatically_update_urls_on_dev = true
 
 [webhooks]
 api_version = "2025-01"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products"
+scopes = "write_products, write_discounts, write_discounts_allocator_functions, read_products"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://everybody-explains-comes-headphones.trycloudflare.com/auth/callback",
+  "https://everybody-explains-comes-headphones.trycloudflare.com/auth/shopify/callback",
+  "https://everybody-explains-comes-headphones.trycloudflare.com/api/auth/callback"
+]
 
 [pos]
 embedded = false
